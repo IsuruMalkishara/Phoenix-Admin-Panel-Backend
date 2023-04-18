@@ -15,4 +15,8 @@ public interface AdminService extends UserDetailsService {
 
     @Override
     UserDetails loadUserByUsername(String email) throws UsernameNotFoundException;
+
+    Admin getAdminById(int id);
+
+    Boolean updatePassword(int userId, String userEmail, String password);
 }
