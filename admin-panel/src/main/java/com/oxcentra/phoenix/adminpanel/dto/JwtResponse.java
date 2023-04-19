@@ -10,6 +10,7 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 public class JwtResponse {
+    private int id;
     private Boolean result;
     private String message;
     private String access_token;

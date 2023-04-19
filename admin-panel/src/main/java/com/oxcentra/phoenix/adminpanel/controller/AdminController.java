@@ -4,6 +4,7 @@ import com.oxcentra.phoenix.adminpanel.common.JwtUtility;
 import com.oxcentra.phoenix.adminpanel.dto.AdminDto;
 import com.oxcentra.phoenix.adminpanel.dto.JwtRequest;
 import com.oxcentra.phoenix.adminpanel.dto.JwtResponse;
+import com.oxcentra.phoenix.adminpanel.model.Admin;
 import com.oxcentra.phoenix.adminpanel.service.AdminService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -62,7 +63,7 @@ public class AdminController {
 
         JwtResponse jwtResponse=new JwtResponse();
 
-
+        jwtResponse.setId(adminService.getAdminId(jwtRequest.getEmail()));
         jwtResponse.setResult(true);
         jwtResponse.setMessage("Success");
         jwtResponse.setAccess_token(jwtUtility.generateToken(jwtRequest.getEmail()));
@@ -95,5 +96,12 @@ public class AdminController {
         Integer code = Integer.parseInt(value);
 
         return adminService.checkVerificationCode(code);
+    }
+
+    @CrossOrigin(origins = "http://localhost:4200")
+    @GetMapping("/admin/{id}")
+    public @ResponseBody
+    Admin getAdminById(@PathVariable int id) {
+        return adminService.getAdminById(id);
     }
 }

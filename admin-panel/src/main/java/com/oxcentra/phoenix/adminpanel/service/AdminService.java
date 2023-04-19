@@ -28,4 +28,6 @@ public interface AdminService extends UserDetailsService {
     Boolean checkVerificationCode(Integer code);
 
     Boolean addNewAdmin();
+
+    int getAdminId(String email);
 }

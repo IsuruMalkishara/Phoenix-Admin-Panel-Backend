@@ -15,4 +15,5 @@ public class AdminDto {
     private String email;
     private String password;
     private String confirmPassword;
+    private String profilePicture;
 }

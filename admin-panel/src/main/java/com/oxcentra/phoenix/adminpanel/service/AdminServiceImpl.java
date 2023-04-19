@@ -98,6 +98,7 @@ public class AdminServiceImpl implements AdminService, UserDetailsService {
         admin1.setEmail(adminDto.getEmail());
         admin1.setPhone(adminDto.getPhone());
         admin1.setPassword(adminDto.getPassword());
+        admin1.setProfilePicture(adminDto.getProfilePicture());
         if(adminDto.getPassword().equals(adminDto.getConfirmPassword()) && admin.size()==0){
             if(sendVerificationCode().equals(true)){
                 message ="Verification code sent";
@@ -146,6 +147,14 @@ public class AdminServiceImpl implements AdminService, UserDetailsService {
 
         adminRepository.save(admin1);
         return emailService.sendEmail(userEmail,body,subject);
+    }
+
+    @Override
+    public int getAdminId(String email) {
+        List<Admin> admin=getAllAdmin().stream().filter(a->
+                email.contains(a.getEmail())).collect(Collectors.toList());
+
+        return admin.get(0).getId();
     }
 
 

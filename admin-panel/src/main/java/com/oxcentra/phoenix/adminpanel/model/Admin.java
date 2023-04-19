@@ -32,4 +32,7 @@ public class Admin {
 
     @Column(name="password")
     private String password;
+
+    @Column(name="profile_picture")
+    private String profilePicture;
 }
