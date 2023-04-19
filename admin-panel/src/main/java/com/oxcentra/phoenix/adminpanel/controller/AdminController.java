@@ -1,6 +1,7 @@
 package com.oxcentra.phoenix.adminpanel.controller;
 
 import com.oxcentra.phoenix.adminpanel.common.JwtUtility;
+import com.oxcentra.phoenix.adminpanel.dto.AdminDto;
 import com.oxcentra.phoenix.adminpanel.dto.JwtRequest;
 import com.oxcentra.phoenix.adminpanel.dto.JwtResponse;
 import com.oxcentra.phoenix.adminpanel.service.AdminService;
@@ -69,5 +70,30 @@ public class AdminController {
         jwtResponse.setExpires_in(jwtUtility.jwtExpirationInMs);
 
         return jwtResponse;
+    }
+
+    @CrossOrigin(origins = "http://localhost:4200")
+    @PostMapping("/signup")
+    @ResponseBody
+    public String signup(@RequestBody AdminDto adminDto){
+        return adminService.signup(adminDto);
+    }
+
+    @CrossOrigin(origins = "http://localhost:4200")
+    @GetMapping("/resend_code")
+    public @ResponseBody
+    Boolean resendVerificationCode() {
+        return adminService.sendVerificationCode();
+    }
+
+    @CrossOrigin(origins = "http://localhost:4200")
+    @PostMapping("/verify_admin")
+    public @ResponseBody
+    Boolean checkVerificationCode(@RequestBody String value) {
+
+        log.info(value);
+        Integer code = Integer.parseInt(value);
+
+        return adminService.checkVerificationCode(code);
     }
 }

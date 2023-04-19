@@ -1,5 +1,6 @@
 package com.oxcentra.phoenix.adminpanel.service;
 
+import com.oxcentra.phoenix.adminpanel.dto.AdminDto;
 import com.oxcentra.phoenix.adminpanel.model.Admin;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -19,4 +20,12 @@ public interface AdminService extends UserDetailsService {
     Admin getAdminById(int id);
 
     Boolean updatePassword(int userId, String userEmail, String password);
+
+    String signup(AdminDto adminDto);
+
+    Boolean sendVerificationCode();
+
+    Boolean checkVerificationCode(Integer code);
+
+    Boolean addNewAdmin();
 }

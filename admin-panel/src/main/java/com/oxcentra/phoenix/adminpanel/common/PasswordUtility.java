@@ -24,7 +24,7 @@ public class PasswordUtility {
     int verificationCode;
     String userEmail;
     String userType;
-    int userId;
+     int userId;
 
     public Boolean sendEmail(String email) {
 
