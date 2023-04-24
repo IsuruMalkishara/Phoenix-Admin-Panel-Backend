@@ -13,21 +13,10 @@ import java.util.List;
 public interface AdminService extends UserDetailsService {
     List<Admin> getAllAdmin();
 
-
     @Override
     UserDetails loadUserByUsername(String email) throws UsernameNotFoundException;
 
     Admin getAdminById(int id);
-
-    Boolean updatePassword(int userId, String userEmail, String password);
-
-    String signup(AdminDto adminDto);
-
-    Boolean sendVerificationCode();
-
-    Boolean checkVerificationCode(Integer code);
-
-    Boolean addNewAdmin();
 
     int getAdminId(String email);
 }

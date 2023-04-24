@@ -6,6 +6,7 @@ import com.oxcentra.phoenix.adminpanel.dto.JwtRequest;
 import com.oxcentra.phoenix.adminpanel.dto.JwtResponse;
 import com.oxcentra.phoenix.adminpanel.model.Admin;
 import com.oxcentra.phoenix.adminpanel.service.AdminService;
+import com.oxcentra.phoenix.adminpanel.service.VacancyService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +29,7 @@ public class AdminController {
 
     @Autowired
     private AdminService adminService;
+
 
     @Autowired
     private AuthenticationManager authenticationManager;
@@ -73,35 +75,14 @@ public class AdminController {
         return jwtResponse;
     }
 
-    @CrossOrigin(origins = "http://localhost:4200")
-    @PostMapping("/signup")
-    @ResponseBody
-    public String signup(@RequestBody AdminDto adminDto){
-        return adminService.signup(adminDto);
-    }
 
-    @CrossOrigin(origins = "http://localhost:4200")
-    @GetMapping("/resend_code")
-    public @ResponseBody
-    Boolean resendVerificationCode() {
-        return adminService.sendVerificationCode();
-    }
 
-    @CrossOrigin(origins = "http://localhost:4200")
-    @PostMapping("/verify_admin")
-    public @ResponseBody
-    Boolean checkVerificationCode(@RequestBody String value) {
-
-        log.info(value);
-        Integer code = Integer.parseInt(value);
-
-        return adminService.checkVerificationCode(code);
-    }
 
     @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping("/admin/{id}")
     public @ResponseBody
-    Admin getAdminById(@PathVariable int id) {
+    Admin getAdminById(@PathVariable int id)  {
+
         return adminService.getAdminById(id);
     }
 }
