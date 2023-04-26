@@ -12,4 +12,6 @@ import lombok.Setter;
 public class JobType {
     private String id;
     private String title;
+
+
 }
