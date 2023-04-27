@@ -18,11 +18,12 @@ public class VacancyController {
     @Autowired
     private VacancyService vacancyService;
 
+
     @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping("/vacancy")
     public @ResponseBody
     List<Vacancy> getVacancies()  {
-         return vacancyService.getAllVacancy();
+        return vacancyService.getAllVacancy();
     }
 
     @CrossOrigin(origins = "http://localhost:4200")
@@ -49,5 +50,12 @@ public class VacancyController {
 
         log.info(String.valueOf(vacancy.getId()));
         return vacancyService.updateVacancy(vacancy);
+    }
+
+    @CrossOrigin(origins = "http://localhost:4200")
+    @GetMapping("/vacancies/{id}")
+    public @ResponseBody
+    List<Vacancy> getVacanciesByEmployerId(@PathVariable Integer id)  {
+        return vacancyService.getVacanciesByEmployerId(id);
     }
 }

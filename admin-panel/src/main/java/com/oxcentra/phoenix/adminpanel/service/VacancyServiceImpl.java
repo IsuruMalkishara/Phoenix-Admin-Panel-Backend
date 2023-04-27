@@ -69,4 +69,17 @@ public class VacancyServiceImpl implements VacancyService{
 //        restTemplate.put(url, vacancy, vacancy.getId());
 //        return true;
     }
+
+    @Override
+    public List<Vacancy> getVacanciesByEmployerId(Integer id) {
+        log.info(" Vacancies of "+id);
+        String url = projectAUrl + "/vacancies/"+id;
+        ResponseEntity<List<Vacancy>> response = restTemplate.exchange(
+                url,
+                HttpMethod.GET,
+                null,
+                new ParameterizedTypeReference<List<Vacancy>>() {}
+        );
+        return response.getBody();
+    }
 }

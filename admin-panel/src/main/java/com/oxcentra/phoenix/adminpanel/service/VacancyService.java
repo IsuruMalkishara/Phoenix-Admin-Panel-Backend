@@ -18,4 +18,6 @@ public interface VacancyService {
     Boolean deleteVacancyById(Integer id);
 
     Boolean updateVacancy(VacancyDto vacancy);
+
+    List<Vacancy> getVacanciesByEmployerId(Integer id);
 }
