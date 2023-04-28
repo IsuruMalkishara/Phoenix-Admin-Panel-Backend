@@ -10,10 +10,11 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 public class AdminDto {
-    private String name;
+    private String userName;
     private String phone;
     private String email;
     private String password;
     private String confirmPassword;
     private String profilePicture;
+    private String userType;
 }

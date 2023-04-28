@@ -14,9 +14,9 @@ public interface AdminService extends UserDetailsService {
     List<Admin> getAllAdmin();
 
     @Override
-    UserDetails loadUserByUsername(String email) throws UsernameNotFoundException;
+    UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException;
 
     Admin getAdminById(int id);
 
-    int getAdminId(String email);
+    Admin getAdminByUserName(String userName);
 }

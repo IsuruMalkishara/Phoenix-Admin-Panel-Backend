@@ -28,14 +28,14 @@ public class JwtUtility {
         return extractClaim(token, Claims::getExpiration);
     }
 
-    public String generateToken(String email) {
+    public String generateToken(String userName) {
         Map<String, Object> claims = new HashMap<String, Object>();
-        return createToken(claims, email);
+        return createToken(claims, userName);
     }
 
     public Boolean validateToken(String token, UserDetails userDetails) {
-        final String email = extractUserName(token);
-        return email.equals(userDetails.getUsername()) && !isTokenExpired(token);
+        final String userName = extractUserName(token);
+        return userName.equals(userDetails.getUsername()) && !isTokenExpired(token);
     }
 
     public <T> T extractClaim(String token, Function<Claims, T> claimsResolver) {

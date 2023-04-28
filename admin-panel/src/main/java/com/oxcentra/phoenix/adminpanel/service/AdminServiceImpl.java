@@ -36,16 +36,16 @@ public class AdminServiceImpl implements AdminService, UserDetailsService {
 
 
     @Override
-    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+    public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
 
 
         adminList=getAllAdmin().stream().filter(a->
-                email.equals(a.getEmail())).collect(Collectors.toList());
+                userName.equals(a.getUserName())).collect(Collectors.toList());
 
         log.info(String.valueOf(adminList));
 
         if(adminList.size()>0){
-            return new User(adminList.get(0).getEmail(),adminList.get(0).getPassword(),new ArrayList<>());
+            return new User(adminList.get(0).getUserName(),adminList.get(0).getPassword(),new ArrayList<>());
         }else{
             throw new UsernameNotFoundException("User not found");
         }
@@ -67,11 +67,11 @@ public class AdminServiceImpl implements AdminService, UserDetailsService {
 
 
     @Override
-    public int getAdminId(String email) {
+    public Admin getAdminByUserName(String userName) {
         List<Admin> admin=getAllAdmin().stream().filter(a->
-                email.contains(a.getEmail())).collect(Collectors.toList());
-
-        return admin.get(0).getId();
+                userName.equals(a.getUserName())).collect(Collectors.toList());
+     log.info(String.valueOf(admin));
+        return admin.get(0);
     }
 
 

@@ -45,9 +45,9 @@ public class AdminController {
     @ResponseBody
     public JwtResponse login(@RequestBody JwtRequest jwtRequest) throws Exception{
         
-        log.info(jwtRequest.getEmail());
+        log.info(jwtRequest.getUserName());
         try {
-            authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(jwtRequest.getEmail(), jwtRequest.getPassword()));
+            authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(jwtRequest.getUserName(), jwtRequest.getPassword()));
         }catch (BadCredentialsException e){
             log.info("Error");
             throw new Exception("Invalid credential",e);
@@ -57,7 +57,7 @@ public class AdminController {
 
         final Boolean result=true;
         final String message="SUCCESS";
-        final String token=jwtUtility.generateToken(jwtRequest.getEmail());
+        final String token=jwtUtility.generateToken(jwtRequest.getUserName());
         final Date expiresAt=jwtUtility.extractExpiration(token);
         final int expiresIn=jwtUtility.jwtExpirationInMs;
 
@@ -65,10 +65,11 @@ public class AdminController {
 
         JwtResponse jwtResponse=new JwtResponse();
 
-        jwtResponse.setId(adminService.getAdminId(jwtRequest.getEmail()));
+        jwtResponse.setId(adminService.getAdminByUserName(jwtRequest.getUserName()).getId());
+        jwtResponse.setUserType(adminService.getAdminByUserName(jwtRequest.getUserName()).getUserType());
         jwtResponse.setResult(true);
         jwtResponse.setMessage("Success");
-        jwtResponse.setAccess_token(jwtUtility.generateToken(jwtRequest.getEmail()));
+        jwtResponse.setAccess_token(jwtUtility.generateToken(jwtRequest.getUserName()));
         jwtResponse.setExpires_at(jwtUtility.extractExpiration(token));
         jwtResponse.setExpires_in(jwtUtility.jwtExpirationInMs);
 

@@ -21,8 +21,8 @@ public class Admin {
     @Column(name="id")
     private int id;
 
-    @Column(name="name")
-    private String name;
+    @Column(name="user_name")
+    private String userName;
 
     @Column(name="phone")
     private String phone;
@@ -35,4 +35,7 @@ public class Admin {
 
     @Column(name="profile_picture")
     private String profilePicture;
+
+    @Column(name="type")
+    private String userType;
 }
