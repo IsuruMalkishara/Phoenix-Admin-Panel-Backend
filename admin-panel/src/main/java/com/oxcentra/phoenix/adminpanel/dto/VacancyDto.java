@@ -29,5 +29,7 @@ public class VacancyDto {
 
     private String description;
 
+    private String descriptionImg;
+
     private int numOfRequests;
 }

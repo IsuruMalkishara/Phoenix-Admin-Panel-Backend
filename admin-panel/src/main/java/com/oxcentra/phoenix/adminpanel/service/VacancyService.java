@@ -20,4 +20,6 @@ public interface VacancyService {
     Boolean updateVacancy(VacancyDto vacancy);
 
     List<Vacancy> getVacanciesByEmployerId(Integer id);
+
+    Boolean addVacancy(VacancyDto vacancy);
 }

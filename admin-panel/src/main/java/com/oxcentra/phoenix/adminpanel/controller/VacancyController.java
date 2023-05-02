@@ -58,4 +58,13 @@ public class VacancyController {
     List<Vacancy> getVacanciesByEmployerId(@PathVariable Integer id)  {
         return vacancyService.getVacanciesByEmployerId(id);
     }
+
+    @CrossOrigin(origins = "http://localhost:4200")
+    @PostMapping("/vacancy")
+    public @ResponseBody
+    Boolean addVacancy(@RequestBody VacancyDto vacancy) {
+
+        log.info(String.valueOf(vacancy));
+        return vacancyService.addVacancy(vacancy);
+    }
 }

@@ -59,6 +59,7 @@ public class VacancyServiceImpl implements VacancyService{
 
     @Override
     public Boolean updateVacancy(VacancyDto vacancy) {
+        log.info(vacancy.getDescriptionImg());
         String url = projectAUrl + "/vacancy/"+vacancy.getId();
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
@@ -81,5 +82,17 @@ public class VacancyServiceImpl implements VacancyService{
                 new ParameterizedTypeReference<List<Vacancy>>() {}
         );
         return response.getBody();
+    }
+
+    @Override
+    public Boolean addVacancy(VacancyDto vacancy) {
+        log.info(vacancy.getDescriptionImg());
+        String url = projectAUrl + "/vacancy";
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        HttpEntity<VacancyDto> requestEntity = new HttpEntity<>(vacancy, headers);
+        ResponseEntity<Void> response = restTemplate.exchange(url, HttpMethod.POST, requestEntity, Void.class, vacancy.getId());
+        HttpStatus status = response.getStatusCode();
+        return status.is2xxSuccessful();
     }
 }
