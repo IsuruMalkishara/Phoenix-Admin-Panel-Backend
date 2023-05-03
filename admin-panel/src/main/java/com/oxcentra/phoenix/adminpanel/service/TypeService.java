@@ -8,4 +8,10 @@ import java.util.List;
 @Service
 public interface TypeService {
     List<JobType> getAllJobTypes();
+
+    Boolean addType(JobType jobType);
+
+    Boolean updateType(JobType jobType);
+
+    Boolean deleteTypeById(String id);
 }
