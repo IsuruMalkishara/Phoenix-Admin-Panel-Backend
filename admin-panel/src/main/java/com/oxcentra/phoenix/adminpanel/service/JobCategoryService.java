@@ -9,4 +9,10 @@ import java.util.List;
 @Service
 public interface JobCategoryService {
     List<JobCategory> getAllJobCategories();
+
+    Boolean addCategory(JobCategory jobCategory);
+
+    Boolean updateCategory(JobCategory jobCategory);
+
+    Boolean deleteCategoryById(String id);
 }
