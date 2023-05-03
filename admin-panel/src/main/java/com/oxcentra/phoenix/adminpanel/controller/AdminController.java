@@ -2,6 +2,7 @@ package com.oxcentra.phoenix.adminpanel.controller;
 
 import com.oxcentra.phoenix.adminpanel.common.JwtUtility;
 import com.oxcentra.phoenix.adminpanel.dto.AdminDto;
+import com.oxcentra.phoenix.adminpanel.dto.Employer;
 import com.oxcentra.phoenix.adminpanel.dto.JwtRequest;
 import com.oxcentra.phoenix.adminpanel.dto.JwtResponse;
 import com.oxcentra.phoenix.adminpanel.model.Admin;
@@ -17,6 +18,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
+import java.util.List;
 
 @Slf4j
 @Component
@@ -85,5 +87,38 @@ public class AdminController {
     Admin getAdminById(@PathVariable int id)  {
 
         return adminService.getAdminById(id);
+    }
+
+    @CrossOrigin(origins = "http://localhost:4200")
+    @GetMapping("/admin")
+    public @ResponseBody
+    List<Admin> getAllAdmins()  {
+        return adminService.getAllAdmins();
+    }
+
+    @CrossOrigin(origins = "http://localhost:4200")
+    @DeleteMapping("/admin/{id}")
+    public @ResponseBody
+    Boolean deleteAdminById(@PathVariable Integer id) {
+        log.info(String.valueOf(id));
+        return adminService.deleteAdminById(id);
+    }
+
+    @CrossOrigin(origins = "http://localhost:4200")
+    @PutMapping("/admin/{id}")
+    public @ResponseBody
+    Boolean updateAdmin(@RequestBody Admin admin) {
+
+        log.info(String.valueOf(admin.getId()));
+        return adminService.updateAdmin(admin);
+    }
+
+    @CrossOrigin(origins = "http://localhost:4200")
+    @PostMapping("/admin")
+    public @ResponseBody
+    Boolean addAdmin(@RequestBody Admin admin) {
+
+        log.info(admin.getUserName());
+        return adminService.addAdmin(admin);
     }
 }

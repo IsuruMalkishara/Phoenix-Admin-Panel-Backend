@@ -19,4 +19,12 @@ public interface AdminService extends UserDetailsService {
     Admin getAdminById(int id);
 
     Admin getAdminByUserName(String userName);
+
+    List<Admin> getAllAdmins();
+
+    Boolean deleteAdminById(Integer id);
+
+    Boolean updateAdmin(Admin admin);
+
+    Boolean addAdmin(Admin admin);
 }

@@ -74,5 +74,33 @@ public class AdminServiceImpl implements AdminService, UserDetailsService {
         return admin.get(0);
     }
 
+    @Override
+    public List<Admin> getAllAdmins() {
+        log.info(String.valueOf(adminRepository.findAll()));
+        return adminRepository.findAll();
+    }
+
+    @Override
+    public Boolean deleteAdminById(Integer id) {
+        log.info("Delete admin: "+id);
+        adminRepository.deleteById(id);
+        return true;
+    }
+
+    @Override
+    public Boolean updateAdmin(Admin admin) {
+        log.info("update admin "+admin.getUserName());
+        admin.setPassword(getAdminById(admin.getId()).getPassword());
+        adminRepository.save(admin);
+        return true;
+    }
+
+    @Override
+    public Boolean addAdmin(Admin admin) {
+        log.info("add admin "+admin.getUserName());
+        adminRepository.save(admin);
+        return true;
+    }
+
 
 }
