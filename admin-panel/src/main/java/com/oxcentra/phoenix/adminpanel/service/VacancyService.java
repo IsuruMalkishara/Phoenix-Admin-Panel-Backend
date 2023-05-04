@@ -22,4 +22,6 @@ public interface VacancyService {
     List<Vacancy> getVacanciesByEmployerId(Integer id);
 
     Boolean addVacancy(VacancyDto vacancy);
+
+    List<Vacancy> searchVacancy(String title);
 }

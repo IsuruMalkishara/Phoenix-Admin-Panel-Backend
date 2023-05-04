@@ -95,4 +95,21 @@ public class VacancyServiceImpl implements VacancyService{
         HttpStatus status = response.getStatusCode();
         return status.is2xxSuccessful();
     }
+
+    @Override
+    public List<Vacancy> searchVacancy(String title) {
+        log.info("Searched Vacancies:");
+        String url = projectAUrl + "/vacancy/title";
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        HttpEntity<String> requestEntity = new HttpEntity<>(title, headers);
+        ResponseEntity<List<Vacancy>> response = restTemplate.exchange(
+                url,
+                HttpMethod.POST,
+                requestEntity,
+                new ParameterizedTypeReference<List<Vacancy>>() {}
+        );
+        return response.getBody();
+    }
 }

@@ -67,4 +67,13 @@ public class VacancyController {
         log.info(String.valueOf(vacancy));
         return vacancyService.addVacancy(vacancy);
     }
+
+    @CrossOrigin(origins = "http://localhost:4200")
+    @PostMapping("/vacancy/title")
+    public @ResponseBody
+    List<Vacancy> searchVacancy(@RequestBody String title) {
+
+        log.info(title);
+        return vacancyService.searchVacancy(title);
+    }
 }
