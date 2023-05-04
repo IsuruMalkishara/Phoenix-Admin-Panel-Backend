@@ -15,4 +15,6 @@ public interface EmployerService {
     Boolean deleteEmployerById(Integer id);
 
     Boolean updateEmployer(Employer employer);
+
+    List<Employer> searchEmployer(String title);
 }

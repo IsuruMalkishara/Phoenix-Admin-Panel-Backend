@@ -1,6 +1,7 @@
 package com.oxcentra.phoenix.adminpanel.controller;
 
 import com.oxcentra.phoenix.adminpanel.dto.Employer;
+import com.oxcentra.phoenix.adminpanel.dto.Vacancy;
 import com.oxcentra.phoenix.adminpanel.service.EmployerService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,5 +47,14 @@ public class EmployerController {
 
         log.info(String.valueOf(employer.getId()));
         return employerService.updateEmployer(employer);
+    }
+
+    @CrossOrigin(origins = "http://localhost:4200")
+    @PostMapping("/employer/title")
+    public @ResponseBody
+    List<Employer> searchEmployer(@RequestBody String title) {
+
+        log.info(title);
+        return employerService.searchEmployer(title);
     }
 }

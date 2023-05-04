@@ -62,4 +62,21 @@ public class EmployerServiceImpl implements EmployerService{
         HttpStatus status = response.getStatusCode();
         return status.is2xxSuccessful();
     }
+
+    @Override
+    public List<Employer> searchEmployer(String title) {
+        log.info("Searched Employers:");
+        String url = projectAUrl + "/employer/title";
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        HttpEntity<String> requestEntity = new HttpEntity<>(title, headers);
+        ResponseEntity<List<Employer>> response = restTemplate.exchange(
+                url,
+                HttpMethod.POST,
+                requestEntity,
+                new ParameterizedTypeReference<List<Employer>>() {}
+        );
+        return response.getBody();
+    }
 }
