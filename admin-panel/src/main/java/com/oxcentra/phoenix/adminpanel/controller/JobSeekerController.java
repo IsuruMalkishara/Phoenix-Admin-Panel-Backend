@@ -40,4 +40,14 @@ public class JobSeekerController {
         return jobSeekerService.deleteJobSeekerById(id);
     }
 
+
+    @CrossOrigin(origins = "http://localhost:4200")
+    @PostMapping("/jobseeker/title")
+    public @ResponseBody
+    List<JobSeeker> searchJobSeekers(@RequestBody String title) {
+
+        log.info(title);
+        return jobSeekerService.searchJobSeekers(title);
+    }
+
 }

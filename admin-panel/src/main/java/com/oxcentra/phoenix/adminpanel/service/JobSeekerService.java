@@ -13,4 +13,6 @@ public interface JobSeekerService {
     Optional<JobSeeker> getJobSeekerById(Integer id);
 
     Boolean deleteJobSeekerById(Integer id);
+
+    List<JobSeeker> searchJobSeekers(String title);
 }

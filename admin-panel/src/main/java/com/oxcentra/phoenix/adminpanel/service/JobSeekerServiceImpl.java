@@ -5,9 +5,7 @@ import com.oxcentra.phoenix.adminpanel.dto.JobSeeker;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.ParameterizedTypeReference;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.*;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -51,5 +49,22 @@ public class JobSeekerServiceImpl implements JobSeekerService{
         ResponseEntity<Void> response = restTemplate.exchange(url, HttpMethod.DELETE, null, Void.class, id);
         HttpStatus status = response.getStatusCode();
         return status.is2xxSuccessful();
+    }
+
+    @Override
+    public List<JobSeeker> searchJobSeekers(String title) {
+        log.info("Searched Job Seekers:");
+        String url = projectAUrl + "/jobseeker/title";
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        HttpEntity<String> requestEntity = new HttpEntity<>(title, headers);
+        ResponseEntity<List<JobSeeker>> response = restTemplate.exchange(
+                url,
+                HttpMethod.POST,
+                requestEntity,
+                new ParameterizedTypeReference<List<JobSeeker>>() {}
+        );
+        return response.getBody();
     }
 }
