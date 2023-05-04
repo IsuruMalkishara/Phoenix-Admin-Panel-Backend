@@ -5,8 +5,7 @@ import com.oxcentra.phoenix.adminpanel.dto.JobType;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.ParameterizedTypeReference;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.*;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -32,5 +31,36 @@ public class ModalityServiceImpl implements ModalityService{
                 new ParameterizedTypeReference<List<JobModality>>() {}
         );
         return response.getBody();
+    }
+
+    @Override
+    public Boolean addModality(JobModality jobModality) {
+        log.info(jobModality.getTitle());
+        String url = projectAUrl + "/modality";
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        HttpEntity<JobModality> requestEntity = new HttpEntity<>(jobModality, headers);
+        ResponseEntity<Void> response = restTemplate.exchange(url, HttpMethod.POST, requestEntity, Void.class, jobModality.getId());
+        HttpStatus status = response.getStatusCode();
+        return status.is2xxSuccessful();
+    }
+
+    @Override
+    public Boolean updateModality(JobModality jobModality) {
+        String url = projectAUrl + "/modality/"+jobModality.getId();
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        HttpEntity<JobModality> requestEntity = new HttpEntity<>(jobModality, headers);
+        ResponseEntity<Void> response = restTemplate.exchange(url, HttpMethod.PUT, requestEntity, Void.class, jobModality.getId());
+        HttpStatus status = response.getStatusCode();
+        return status.is2xxSuccessful();
+    }
+
+    @Override
+    public Boolean deleteModalityById(String id) {
+        String url = projectAUrl + "/modality/{id}";
+        ResponseEntity<Void> response = restTemplate.exchange(url, HttpMethod.DELETE, null, Void.class, id);
+        HttpStatus status = response.getStatusCode();
+        return status.is2xxSuccessful();
     }
 }
