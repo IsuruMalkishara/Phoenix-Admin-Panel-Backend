@@ -74,7 +74,7 @@ public class VacancyServiceImpl implements VacancyService{
     @Override
     public List<Vacancy> getVacanciesByEmployerId(Integer id) {
         log.info(" Vacancies of "+id);
-        String url = projectAUrl + "/vacancies/"+id;
+        String url = projectAUrl + "/company/"+id;
         ResponseEntity<List<Vacancy>> response = restTemplate.exchange(
                 url,
                 HttpMethod.GET,

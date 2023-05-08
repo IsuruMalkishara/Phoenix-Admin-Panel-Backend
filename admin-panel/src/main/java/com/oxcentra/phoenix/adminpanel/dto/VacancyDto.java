@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.Date;
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -32,4 +34,6 @@ public class VacancyDto {
     private String descriptionImg;
 
     private int numOfRequests;
+
+    private Date expirationDate;
 }
