@@ -42,7 +42,7 @@ public class AdminController {
         this.authenticationManager=authenticationManager;
     }
 
-    @CrossOrigin(origins = "http://localhost:4200")
+    @CrossOrigin(origins = {"http://localhost:4200","http://localhost:3000"})
     @PostMapping("/login")
     @ResponseBody
     public JwtResponse login(@RequestBody JwtRequest jwtRequest) throws Exception{
@@ -81,7 +81,7 @@ public class AdminController {
 
 
 
-    @CrossOrigin(origins = "http://localhost:4200")
+    @CrossOrigin(origins = {"http://localhost:4200","http://localhost:3000"})
     @GetMapping("/admin/{id}")
     public @ResponseBody
     Admin getAdminById(@PathVariable int id)  {
@@ -89,14 +89,14 @@ public class AdminController {
         return adminService.getAdminById(id);
     }
 
-    @CrossOrigin(origins = "http://localhost:4200")
+    @CrossOrigin(origins = {"http://localhost:4200","http://localhost:3000"})
     @GetMapping("/admin")
     public @ResponseBody
     List<Admin> getAllAdmins()  {
         return adminService.getAllAdmins();
     }
 
-    @CrossOrigin(origins = "http://localhost:4200")
+    @CrossOrigin(origins = {"http://localhost:4200","http://localhost:3000"})
     @DeleteMapping("/admin/{id}")
     public @ResponseBody
     Boolean deleteAdminById(@PathVariable Integer id) {
@@ -104,7 +104,7 @@ public class AdminController {
         return adminService.deleteAdminById(id);
     }
 
-    @CrossOrigin(origins = "http://localhost:4200")
+    @CrossOrigin(origins = {"http://localhost:4200","http://localhost:3000"})
     @PutMapping("/admin/{id}")
     public @ResponseBody
     Boolean updateAdmin(@RequestBody Admin admin) {
@@ -113,7 +113,7 @@ public class AdminController {
         return adminService.updateAdmin(admin);
     }
 
-    @CrossOrigin(origins = "http://localhost:4200")
+    @CrossOrigin(origins = {"http://localhost:4200","http://localhost:3000"})
     @PostMapping("/admin")
     public @ResponseBody
     Boolean addAdmin(@RequestBody Admin admin) {

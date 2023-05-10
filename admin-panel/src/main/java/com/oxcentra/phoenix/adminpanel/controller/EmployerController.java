@@ -17,14 +17,14 @@ public class EmployerController {
     @Autowired
     private EmployerService employerService;
 
-    @CrossOrigin(origins = "http://localhost:4200")
+    @CrossOrigin(origins = {"http://localhost:4200","http://localhost:3000"})
     @GetMapping("/employer")
     public @ResponseBody
     List<Employer> getAllEmployers()  {
         return employerService.getAllEmployers();
     }
 
-    @CrossOrigin(origins = "http://localhost:4200")
+    @CrossOrigin(origins = {"http://localhost:4200","http://localhost:3000"})
     @GetMapping("/employer/{id}")
     public @ResponseBody
     Optional<Employer> getEmployerById(@PathVariable Integer id)  {
@@ -32,7 +32,7 @@ public class EmployerController {
         return employerService.getEmployerById(id);
     }
 
-    @CrossOrigin(origins = "http://localhost:4200")
+    @CrossOrigin(origins = {"http://localhost:4200","http://localhost:3000"})
     @DeleteMapping("/employer/{id}")
     public @ResponseBody
     Boolean deleteEmployerById(@PathVariable Integer id) {
@@ -40,7 +40,7 @@ public class EmployerController {
         return employerService.deleteEmployerById(id);
     }
 
-    @CrossOrigin(origins = "http://localhost:4200")
+    @CrossOrigin(origins = {"http://localhost:4200","http://localhost:3000"})
     @PutMapping("/employer/{id}")
     public @ResponseBody
     Boolean updateEmployer(@RequestBody Employer employer) {
@@ -49,7 +49,7 @@ public class EmployerController {
         return employerService.updateEmployer(employer);
     }
 
-    @CrossOrigin(origins = "http://localhost:4200")
+    @CrossOrigin(origins = {"http://localhost:4200","http://localhost:3000"})
     @PostMapping("/employer/title")
     public @ResponseBody
     List<Employer> searchEmployer(@RequestBody String title) {

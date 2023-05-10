@@ -19,14 +19,14 @@ public class VacancyController {
     private VacancyService vacancyService;
 
 
-    @CrossOrigin(origins = "http://localhost:4200")
+    @CrossOrigin(origins = {"http://localhost:4200","http://localhost:3000"})
     @GetMapping("/vacancy")
     public @ResponseBody
     List<Vacancy> getVacancies()  {
         return vacancyService.getAllVacancy();
     }
 
-    @CrossOrigin(origins = "http://localhost:4200")
+    @CrossOrigin(origins = {"http://localhost:4200","http://localhost:3000"})
     @GetMapping("/vacancy/{id}")
     public @ResponseBody
     Optional<Vacancy> getVacancyById(@PathVariable Integer id)  {
@@ -35,7 +35,7 @@ public class VacancyController {
         return vacancyService.getVacancyById(id);
     }
 
-    @CrossOrigin(origins = "http://localhost:4200")
+    @CrossOrigin(origins = {"http://localhost:4200","http://localhost:3000"})
     @DeleteMapping("/vacancy/{id}")
     public @ResponseBody
     Boolean deleteVacancyById(@PathVariable Integer id) {
@@ -43,7 +43,7 @@ public class VacancyController {
         return vacancyService.deleteVacancyById(id);
     }
 
-    @CrossOrigin(origins = "http://localhost:4200")
+    @CrossOrigin(origins = {"http://localhost:4200","http://localhost:3000"})
     @PutMapping("/vacancy/{id}")
     public @ResponseBody
     Boolean updateVacancy(@RequestBody VacancyDto vacancy) {
@@ -52,14 +52,14 @@ public class VacancyController {
         return vacancyService.updateVacancy(vacancy);
     }
 
-    @CrossOrigin(origins = "http://localhost:4200")
+    @CrossOrigin(origins = {"http://localhost:4200","http://localhost:3000"})
     @GetMapping("/vacancies/{id}")
     public @ResponseBody
     List<Vacancy> getVacanciesByEmployerId(@PathVariable Integer id)  {
         return vacancyService.getVacanciesByEmployerId(id);
     }
 
-    @CrossOrigin(origins = "http://localhost:4200")
+    @CrossOrigin(origins = {"http://localhost:4200","http://localhost:3000"})
     @PostMapping("/vacancy")
     public @ResponseBody
     Boolean addVacancy(@RequestBody VacancyDto vacancy) {
@@ -68,7 +68,7 @@ public class VacancyController {
         return vacancyService.addVacancy(vacancy);
     }
 
-    @CrossOrigin(origins = "http://localhost:4200")
+    @CrossOrigin(origins = {"http://localhost:4200","http://localhost:3000"})
     @PostMapping("/vacancy/title")
     public @ResponseBody
     List<Vacancy> searchVacancy(@RequestBody String title) {
