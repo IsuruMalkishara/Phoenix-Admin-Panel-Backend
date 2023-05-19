@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @Slf4j
@@ -52,8 +53,8 @@ public class EmployerController {
     @CrossOrigin(origins = {"http://localhost:4200","http://localhost:3000"})
     @PostMapping("/employer/title")
     public @ResponseBody
-    List<Employer> searchEmployer(@RequestBody String title) {
-
+    List<Employer> searchEmployer(@RequestBody Map<String, String> requestData) {
+        String title = requestData.get("title");
         log.info(title);
         return employerService.searchEmployer(title);
     }

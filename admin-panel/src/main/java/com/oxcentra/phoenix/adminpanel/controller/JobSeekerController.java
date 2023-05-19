@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @Slf4j
@@ -17,14 +18,14 @@ public class JobSeekerController {
     @Autowired
     private JobSeekerService jobSeekerService;
 
-    @CrossOrigin(origins = "http://localhost:4200")
+    @CrossOrigin(origins = {"http://localhost:4200","http://localhost:3000"})
     @GetMapping("/jobseeker")
     public @ResponseBody
     List<JobSeeker> getAllJobSeekers()  {
         return jobSeekerService.getAllJobSeekers();
     }
 
-    @CrossOrigin(origins = "http://localhost:4200")
+    @CrossOrigin(origins = {"http://localhost:4200","http://localhost:3000"})
     @GetMapping("/jobseeker/{id}")
     public @ResponseBody
     Optional<JobSeeker> getJobSeekerById(@PathVariable Integer id)  {
@@ -32,7 +33,7 @@ public class JobSeekerController {
         return jobSeekerService.getJobSeekerById(id);
     }
 
-    @CrossOrigin(origins = "http://localhost:4200")
+    @CrossOrigin(origins = {"http://localhost:4200","http://localhost:3000"})
     @DeleteMapping("/jobseeker/{id}")
     public @ResponseBody
     Boolean deleteJobSeekerById(@PathVariable Integer id) {
@@ -41,11 +42,11 @@ public class JobSeekerController {
     }
 
 
-    @CrossOrigin(origins = "http://localhost:4200")
+    @CrossOrigin(origins = {"http://localhost:4200","http://localhost:3000"})
     @PostMapping("/jobseeker/title")
     public @ResponseBody
-    List<JobSeeker> searchJobSeekers(@RequestBody String title) {
-
+    List<JobSeeker> searchJobSeekers(@RequestBody Map<String, String> requestData) {
+        String title = requestData.get("title");
         log.info(title);
         return jobSeekerService.searchJobSeekers(title);
     }

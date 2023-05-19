@@ -17,7 +17,7 @@ public class JobCategoryController {
     @Autowired
     private JobCategoryService jobCategoryService;
 
-    @CrossOrigin(origins = "http://localhost:4200")
+    @CrossOrigin(origins = {"http://localhost:4200","http://localhost:3000"})
     @GetMapping("/category")
     public @ResponseBody
     List<JobCategory> getAllJobCategories(){
@@ -26,7 +26,7 @@ public class JobCategoryController {
         return jobCategoryService.getAllJobCategories();
     }
 
-    @CrossOrigin(origins = "http://localhost:4200")
+    @CrossOrigin(origins = {"http://localhost:4200","http://localhost:3000"})
     @DeleteMapping("/category/{id}")
     public @ResponseBody
     Boolean deleteCategoryById(@PathVariable String id) {
@@ -34,7 +34,7 @@ public class JobCategoryController {
         return jobCategoryService.deleteCategoryById(id);
     }
 
-    @CrossOrigin(origins = "http://localhost:4200")
+    @CrossOrigin(origins = {"http://localhost:4200","http://localhost:3000"})
     @PutMapping("/category/{id}")
     public @ResponseBody
     Boolean updateCategory(@RequestBody JobCategory jobCategory) {
@@ -43,7 +43,7 @@ public class JobCategoryController {
         return jobCategoryService.updateCategory(jobCategory);
     }
 
-    @CrossOrigin(origins = "http://localhost:4200")
+    @CrossOrigin(origins = {"http://localhost:4200","http://localhost:3000"})
     @PostMapping("/category")
     public @ResponseBody
     Boolean addCategory(@RequestBody JobCategory jobCategory) {

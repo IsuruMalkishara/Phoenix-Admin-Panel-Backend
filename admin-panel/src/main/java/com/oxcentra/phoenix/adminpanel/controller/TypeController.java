@@ -15,7 +15,7 @@ public class TypeController {
     @Autowired
     private TypeService typeService;
 
-    @CrossOrigin(origins = "http://localhost:4200")
+    @CrossOrigin(origins = {"http://localhost:4200","http://localhost:3000"})
     @GetMapping("/type")
     public @ResponseBody
     List<JobType> getAllJobTypes(){
@@ -24,7 +24,7 @@ public class TypeController {
         return typeService.getAllJobTypes();
     }
 
-    @CrossOrigin(origins = "http://localhost:4200")
+    @CrossOrigin(origins = {"http://localhost:4200","http://localhost:3000"})
     @DeleteMapping("/type/{id}")
     public @ResponseBody
     Boolean deleteTypeById(@PathVariable String id) {
@@ -32,7 +32,7 @@ public class TypeController {
         return typeService.deleteTypeById(id);
     }
 
-    @CrossOrigin(origins = "http://localhost:4200")
+    @CrossOrigin(origins = {"http://localhost:4200","http://localhost:3000"})
     @PutMapping("/type/{id}")
     public @ResponseBody
     Boolean updateType(@RequestBody JobType jobType) {
@@ -41,7 +41,7 @@ public class TypeController {
         return typeService.updateType(jobType);
     }
 
-    @CrossOrigin(origins = "http://localhost:4200")
+    @CrossOrigin(origins = {"http://localhost:4200","http://localhost:3000"})
     @PostMapping("/type")
     public @ResponseBody
     Boolean addType(@RequestBody JobType jobType) {

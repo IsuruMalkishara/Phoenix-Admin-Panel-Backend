@@ -14,7 +14,7 @@ public class RequestController {
    @Autowired
    private RequestService requestService;
 
-    @CrossOrigin(origins = "http://localhost:4200")
+    @CrossOrigin(origins = {"http://localhost:4200","http://localhost:3000"})
     @GetMapping("/request/{id}")
     public @ResponseBody
     List<JobseekerRequest> getAllRequestByVacancyId(@PathVariable Integer id) {

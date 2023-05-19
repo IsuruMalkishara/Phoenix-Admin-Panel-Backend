@@ -16,7 +16,7 @@ public class ModalityController {
     @Autowired
     private ModalityService modalityService;
 
-    @CrossOrigin(origins = "http://localhost:4200")
+    @CrossOrigin(origins = {"http://localhost:4200","http://localhost:3000"})
     @GetMapping("/modality")
     public @ResponseBody
     List<JobModality> getAllJobModalities(){
@@ -25,7 +25,7 @@ public class ModalityController {
         return modalityService.getAllJobModalities();
     }
 
-    @CrossOrigin(origins = "http://localhost:4200")
+    @CrossOrigin(origins = {"http://localhost:4200","http://localhost:3000"})
     @DeleteMapping("/modality/{id}")
     public @ResponseBody
     Boolean deleteModalityById(@PathVariable String id) {
@@ -33,7 +33,7 @@ public class ModalityController {
         return modalityService.deleteModalityById(id);
     }
 
-    @CrossOrigin(origins = "http://localhost:4200")
+    @CrossOrigin(origins = {"http://localhost:4200","http://localhost:3000"})
     @PutMapping("/modality/{id}")
     public @ResponseBody
     Boolean updateModality(@RequestBody JobModality jobModality) {
@@ -42,7 +42,7 @@ public class ModalityController {
         return modalityService.updateModality(jobModality);
     }
 
-    @CrossOrigin(origins = "http://localhost:4200")
+    @CrossOrigin(origins = {"http://localhost:4200","http://localhost:3000"})
     @PostMapping("/modality")
     public @ResponseBody
     Boolean addModality(@RequestBody JobModality jobModality) {
